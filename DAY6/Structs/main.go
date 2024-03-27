@@ -16,4 +16,10 @@ func main() {
 	fmt.Printf("%+v \n",Sourabh)
 
 	fmt.Println(Sourabh.Name,Sourabh.Email,Sourabh.Age,Sourabh.Status)
+
+	abc()
+}
+
+func abc () {
+	fmt.Println("hi")
 }
