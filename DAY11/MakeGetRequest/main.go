@@ -30,5 +30,8 @@ func performGetRequest() {
 	// fmt.Println(string(content))
 
 	var responseString strings.Builder
-	content,err := ioutil.ReadAll(response.Body)
+	content, err := ioutil.ReadAll(response.Body)
+	bytecount,_ := responseString.Write(content)
+
+	fmt.Println(bytecount)
 }
