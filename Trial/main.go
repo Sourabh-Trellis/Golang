@@ -1,9 +1,8 @@
 package main
 
-import "fmt"
+import "Trial/folder1"
 
 func main() {
 
-	inventory := make([]map[string]int, 5)
-	fmt.Println(inventory)
+	folder1.Function1()
 }

@@ -2,10 +2,10 @@ package main
 
 import "fmt"
 
-func main() {
+var actual_username string = "sourabh@trellissoft"
+var actual_password string = "sdsd@1259"
 
-	actual_username := "sourabh@trellissoft"
-	actual_password := "sdsd@1259"
+func main() {
 
 	var entered_username string
 	var entered_password string
