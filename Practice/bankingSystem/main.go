@@ -105,11 +105,11 @@ func main() {
 			}
 
 		case 6:
-			fmt.Printf("ACCOUNT\t\t\tHOLDER\t\t\tACCOUNT\t\t\tCURRENT\n")
-			fmt.Printf("NUMBER\t\t\tNAME\t\t\tTYPE\t\t\tBALANCE\n\n")
+			fmt.Printf("ACCOUNT\t\t\tHOLDER\t\t\tACCOUNT\t\t\tCURRENT\t\t\tBIRTH\n")
+			fmt.Printf("NUMBER\t\t\tNAME\t\t\tTYPE\t\t\tBALANCE\t\t\tDATE\n\n")
 
 			for k, v := range bank {
-				fmt.Printf("%v\t\t\t%v\t\t\t%v\t\t\t%v\n", k, v.GetName(), v.GetAccType(), v.GetBalance())
+				fmt.Printf("%v\t\t\t%v\t\t\t%v\t\t\t%v\t\t\t%v\n", k, v.GetName(), v.GetAccType(), v.GetBalance(),v.GetDateOfBirth())
 			}
 		case 7:
 			return

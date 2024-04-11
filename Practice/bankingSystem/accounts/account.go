@@ -75,6 +75,10 @@ func (account *Account) GetPin() int {
 	return account.pin
 }
 
+func  (account *Account)GetDateOfBirth() time.Time {
+	return account.dateOfBirth
+}
+
 func OpenAccount(accNum int32) Account {
 	reader := bufio.NewReader(os.Stdin)
 	acc := Account{}
