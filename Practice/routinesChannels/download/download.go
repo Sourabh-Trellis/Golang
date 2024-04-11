@@ -17,3 +17,5 @@ func (d Download) DownloadFile(wg *sync.WaitGroup, ch chan<- string) {
 	ch <- d.FileName
 	wg.Done()
 }
+
+

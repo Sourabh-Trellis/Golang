@@ -18,23 +18,32 @@ func main() {
 	for {
 		fmt.Println("------------------------------------------------------------")
 		var choice int
-		fmt.Println("1)Open new Account\n2)Withdraw Amount\n3)Deposit amount\n4)Check balance\n5)Show all accounts\n6)Exit")
+		fmt.Println("1)Open new Account\n2)Withdraw Amount\n3)Deposit amount\n4)Check balance\n5)Transfer Funds\n6)Show all accounts\n7)Exit")
 		fmt.Scan(&choice)
 		switch choice {
 		case 1:
 
 			acc := accounts.OpenAccount(accNum)
-			accNum++
 			bank[acc.GetAccNumber()] = acc
+			accNum++
+			fmt.Println("Account crated successfully.\nDefault pin to access your account :", acc.GetPin())
 
 		case 2:
 			var acc int32
 			fmt.Println("Enter your accout number")
 			fmt.Scan(&acc)
 			if _, ok := bank[acc]; ok {
-				accounts.Withdraw(&bank, acc)
+				check := accounts.CheckValidPin(&bank, acc)
+				if check {
+					accounts.CheckFlag(&bank, acc)
+					fmt.Println("Enter amount to withdraw:")
+					var amount float64
+					accounts.Withdraw(&bank, acc, amount)
+				} else {
+					fmt.Println("Invalid pin.")
+				}
 			} else {
-				fmt.Println("Invalid Account Number.")
+				fmt.Print("Invalid Account Number.")
 			}
 
 		case 3:
@@ -42,27 +51,67 @@ func main() {
 			fmt.Println("Ente your account number:")
 			fmt.Scan(&accountNumber)
 			if _, ok := bank[accountNumber]; ok {
-				accounts.Deposit(&bank, accountNumber)
+				check := accounts.CheckValidPin(&bank, accountNumber)
+				if check {
+					accounts.CheckFlag(&bank, accountNumber)
+					fmt.Println("Enter amount you want to deposit")
+					var amount float64
+					fmt.Scan(&amount)
+					accounts.Deposit(&bank, accountNumber, amount)
+				} else {
+					fmt.Println("Invalid pin.")
+				}
 			} else {
 				fmt.Println("Invalid Account Number.")
 			}
 		case 4:
 			// var accountNumber int32
-			fmt.Println("Ente your account number:")
+			fmt.Println("Enter your account number:")
 			fmt.Scan(&accountNumber)
 			if _, ok := bank[accountNumber]; ok {
-				accounts.CheckBalance(&bank, accountNumber)
+				check := accounts.CheckValidPin(&bank, accountNumber)
+				if check {
+					accounts.CheckFlag(&bank, accountNumber)
+					accounts.CheckBalance(&bank, accountNumber)
+				} else {
+					fmt.Println("Invalid Pin.")
+				}
 			} else {
 				fmt.Println("Invalid Account Number.")
 			}
 		case 5:
+			var sender int32
+			var reciever int32
+			fmt.Println("Enter your account number:")
+			fmt.Scan(&sender)
+			fmt.Println("Enter recipient's account number:")
+			fmt.Scan(&reciever)
+			if _, ok := bank[sender]; ok {
+				check := accounts.CheckValidPin(&bank, sender)
+				if check {
+					accounts.CheckFlag(&bank, sender)
+					if _, ok := bank[reciever]; ok {
+						fmt.Println("Enter amount to transfer:")
+						var amount float64
+						fmt.Scan(&amount)
+						accounts.Withdraw(&bank, sender, amount)
+						accounts.Deposit(&bank, reciever, amount)
+					} else {
+						fmt.Println("Invalid recipient account number.")
+					}
+				}
+			} else {
+				fmt.Println("Invalid sender account number.")
+			}
+
+		case 6:
 			fmt.Printf("ACCOUNT\t\t\tHOLDER\t\t\tACCOUNT\t\t\tCURRENT\n")
 			fmt.Printf("NUMBER\t\t\tNAME\t\t\tTYPE\t\t\tBALANCE\n\n")
 
 			for k, v := range bank {
 				fmt.Printf("%v\t\t\t%v\t\t\t%v\t\t\t%v\n", k, v.GetName(), v.GetAccType(), v.GetBalance())
 			}
-		case 6:
+		case 7:
 			return
 
 		}
