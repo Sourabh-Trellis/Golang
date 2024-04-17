@@ -38,6 +38,7 @@ func main() {
 					accounts.CheckFlag(&bank, acc)
 					fmt.Println("Enter amount to withdraw:")
 					var amount float64
+					fmt.Scan(&amount)
 					accounts.Withdraw(&bank, acc, amount)
 				} else {
 					fmt.Println("Invalid pin.")
@@ -109,7 +110,7 @@ func main() {
 			fmt.Printf("NUMBER\t\t\tNAME\t\t\tTYPE\t\t\tBALANCE\t\t\tDATE\n\n")
 
 			for k, v := range bank {
-				fmt.Printf("%v\t\t\t%v\t\t\t%v\t\t\t%v\t\t\t%v\n", k, v.GetName(), v.GetAccType(), v.GetBalance(),v.GetDateOfBirth())
+				fmt.Printf("%v\t\t\t%v\t\t\t%v\t\t\t%v\t\t\t%v\n", k, v.GetName(), v.GetAccType(), v.GetBalance(), v.GetDateOfBirth())
 			}
 		case 7:
 			return
