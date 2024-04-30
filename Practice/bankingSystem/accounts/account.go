@@ -7,7 +7,14 @@ import (
 	"os"
 	"strings"
 	"time"
+
+	"golang.org/x/text/message"
 )
+
+type customError struct {
+	message string
+	code int
+}
 
 type Account struct {
 	accNumber    int32
@@ -75,7 +82,7 @@ func (account *Account) GetPin() int {
 	return account.pin
 }
 
-func  (account *Account)GetDateOfBirth() time.Time {
+func (account *Account) GetDateOfBirth() time.Time {
 	return account.dateOfBirth
 }
 
