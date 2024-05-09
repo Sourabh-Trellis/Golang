@@ -114,4 +114,5 @@ func main() {
 
 	//remove element from list
 	fmt.Println(myList.Remove(ele1))
+	
 }

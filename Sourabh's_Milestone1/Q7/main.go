@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func sumarray(arr [5]int) int {
+func Sumarray(arr [5]int) int {
 	var sum int
 	for i := 0; i < len(arr); i++ {
 		sum = sum + arr[i]
@@ -21,7 +21,7 @@ func main() {
 		arr[i] = num
 	}
 
-	sum := sumarray(arr)
+	sum := Sumarray(arr)
 	fmt.Println("Sum of elements is", sum)
 
 }
