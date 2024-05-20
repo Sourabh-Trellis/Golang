@@ -31,6 +31,6 @@ func main() {
 	fmt.Println("Area of circle is", circle.area())
 
 	var rect shape = Rectangle{10,20}
-	fmt.Println("Area of Rectangle is",rect.area())
+	fmt.Println("Area of Rectangle is", rect.area())
 
 }

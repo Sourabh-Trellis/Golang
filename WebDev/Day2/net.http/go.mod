@@ -1,4 +1,4 @@
-module server
+module nethttp
 
 go 1.21.9
 
